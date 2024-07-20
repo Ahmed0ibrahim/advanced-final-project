@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+
+<style>
+  body {
+    background-color: #d7d0f0;
+  }
+</style>
+
+<body>
+
+
+  
+
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card  " style="width: 300px; height: 500px; align-self: center;">
+      <div class="header bg-light d-flex justify-content-center"
+        style="width: 300px; border-bottom: solid 2px; border-radius:5px 5px 0 0 ;">
+        <h4 class="" style="width: 100%; text-align: center;  ">Login</h4>
+      </div>
+      <div class="body d-flex flex-column justify-content-center align-items-center"
+        style="width: 100%; background-color: rgb(128, 128, 172); height: 100%;">
+        <input type="email" placeholder="email" id="username_input"
+          style="margin-bottom: 20px; width: 80%; border-radius: 5px; border: none;">
+        <input type="password" placeholder="password" name="" id="password_input"
+          style=" width: 80%; border-radius: 5px; border: none;">
+      </div>
+      <div class="footer d-flex justify-content-end align-items-end p-1"
+        style="width: 100%; height: 50px; float: left; ">
+        <button class="" id="closebtn" onclick="closeclicked()"
+          style="border-radius: 5px; border: none; padding: 7px 12px; color: rgb(255, 255, 255); height: fit-content; background-color: #474646;">Close</button>
+
+        <div id="logindivst">
+          <button id="loginbtn" class="bg-primary  ms-2"
+            style="color: rgb(255, 255, 255); border: none; padding: 7px 12px;border-radius: 5px;"
+            onclick="loginclicked()">login</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  
+
+
+  document.getElementById('')
+
+  function loginclicked() {
+    const username = document.getElementById('username_input').value
+    const password = document.getElementById('password_input').value
+
+
+    const params = {
+      "username": username,
+      "password": password
+    }
+    axios.post("https://tarmeezacademy.com/api/v1/login", params)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("user", JSON.stringify(response.data.user))
+        location.href = "home.html"
+      }).catch((error =>{
+        alert(error.response.data.message)
+      
+      }))
+  }
+  function closeclicked(){
+    location.href = "home.html"
+  }
+
+
+</script>
+
+</html>
